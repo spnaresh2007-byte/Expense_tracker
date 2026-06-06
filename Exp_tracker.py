@@ -37,10 +37,12 @@ if st.button("Enter Expense"):
 
 if os.path.exists("expense_tracker.csv"):
     df = pd.read_csv("expense_tracker.csv")
+    df["Date"] = pd.to_datetime(df["Date"])
 
 else:
-    st.write("The CSV file does not exist")
-df["Date"] = pd.to_datetime(df["Date"])
+      df = pd.DataFrame(
+        columns=["Date", "Category", "Description", "Amount"]
+     )
 st.write("Expense Calculator")
 mon = st.number_input(
     "Enter month",
